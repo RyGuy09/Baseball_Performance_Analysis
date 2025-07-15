@@ -1,0 +1,101 @@
+# Baseball_Performance_Analysis
+
+mlb-team-success-predictor/
+│
+├── data/
+│   ├── raw/
+│   │   └── mlb_stats_1901_to_2025.csv
+│   ├── processed/
+│   │   ├── train_data.csv
+│   │   ├── test_data.csv
+│   │   └── feature_engineered_data.csv
+│   └── external/
+│       └── (any additional datasets)
+│
+├── src/
+│   ├── __init__.py
+│   ├── data/
+│   │   ├── __init__.py
+│   │   ├── data_loader.py
+│   │   ├── data_preprocessor.py
+│   │   └── feature_engineering.py
+│   │
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── base_model.py
+│   │   ├── classification_models.py
+│   │   ├── regression_models.py
+│   │   ├── milestone_predictor.py
+│   │   ├── ensemble_models.py
+│   │   └── time_series_models.py
+│   │
+│   ├── training/
+│   │   ├── __init__.py
+│   │   ├── train_classifier.py
+│   │   ├── train_regressor.py
+│   │   ├── hyperparameter_tuning.py
+│   │   └── cross_validation.py
+│   │
+│   ├── evaluation/
+│   │   ├── __init__.py
+│   │   ├── metrics.py
+│   │   └── model_evaluation.py
+│   │
+│   ├── prediction/
+│   │   ├── __init__.py
+│   │   ├── predictor.py
+│   │   └── prediction_pipeline.py
+│   │
+│   ├── visualization/
+│   │   ├── __init__.py
+│   │   ├── exploratory_plots.py
+│   │   ├── model_plots.py
+│   │   └── interactive_plots.py
+│   │
+│   └── utils/
+│       ├── __init__.py
+│       ├── config.py
+│       ├── constants.py
+│       └── helpers.py
+│
+├── notebooks/
+│   ├── 01_data_exploration.ipynb
+│   ├── 02_feature_engineering.ipynb
+│   ├── 03_model_development.ipynb
+│   ├── 04_model_evaluation.ipynb
+│   └── 05_final_predictions.ipynb
+│
+├── app/
+│   ├── streamlit_app.py
+│   └── requirements.txt
+│
+├── models/
+│   ├── saved_models/
+│   │   ├── division_classifier.pkl
+│   │   ├── wins_regressor.pkl
+│   │   └── milestone_predictor.pkl
+│   └── scalers/
+│       ├── classification_scaler.pkl
+│       ├── regression_scaler.pkl
+│       └── milestone_scaler.pkl
+│
+├── tests/
+│   ├── __init__.py
+│   ├── test_data_processing.py
+│   ├── test_models.py
+│   └── test_predictions.py
+│
+├── scripts/
+│   ├── train_all_models.py
+│   ├── generate_predictions.py
+│   └── create_submission.py
+│
+├── config/
+│   ├── config.yaml
+│   └── logging_config.yaml
+│
+├── requirements.txt
+├── setup.py
+├── README.md
+├── .gitignore
+└── LICENSE
