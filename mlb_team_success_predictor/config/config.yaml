@@ -1,0 +1,364 @@
+# MLB Team Success Predictor Configuration
+# Main configuration file for model parameters, data processing, and application settings
+
+# Project metadata
+project:
+  name: "MLB Team Success Predictor"
+  version: "1.0.0"
+  description: "Machine learning system for predicting MLB team success"
+  author: "MLB Analytics Team"
+
+# Data configuration
+data:
+  # Data source paths
+  paths:
+    raw_data: "data/raw/mlb_teams.csv"
+    processed_data: "data/processed/"
+    external_data: "data/external/"
+    
+  # Data processing parameters
+  processing:
+    min_year: 1901
+    max_year: 2024
+    modern_era_start: 2006
+    recent_era_start: 2015
+    
+  # Era definitions
+  eras:
+    dead_ball:
+      years: [1901, 1919]
+      description: "Dead Ball Era"
+    live_ball:
+      years: [1920, 1946]
+      description: "Live Ball Era"
+    integration:
+      years: [1947, 1968]
+      description: "Integration Era"
+    expansion:
+      years: [1969, 1976]
+      description: "Expansion Era"
+    free_agency:
+      years: [1977, 1993]
+      description: "Free Agency Era"
+    steroid:
+      years: [1994, 2005]
+      description: "Steroid Era"
+    modern:
+      years: [2006, 2024]
+      description: "Modern Era"
+
+# Feature engineering configuration
+features:
+  # Performance features
+  performance:
+    - runs_scored_per_game
+    - runs_allowed_per_game
+    - scoring_efficiency
+    - run_prevention_efficiency
+    - pythag_expectation
+    - pythag_residual
+    
+  # Efficiency features
+  efficiency:
+    - win_efficiency
+    - loss_efficiency
+    - close_game_performance
+    - blowout_frequency
+    
+  # Historical features
+  historical:
+    lag_years: [1, 2, 3]
+    rolling_windows: [3, 5]
+    features_to_lag:
+      - wins
+      - losses
+      - run_differential
+      - winning_percentage
+      
+  # Era-adjusted features
+  era_adjusted:
+    - era_adjusted_wins
+    - era_relative_performance
+    - era_wins_zscore
+    
+  # Target variables
+  targets:
+    classification:
+      - is_division_winner
+      - made_playoffs
+    regression:
+      - wins
+      - winning_percentage
+    milestones:
+      - achieved_90_wins
+      - achieved_100_wins
+      - scored_800_runs
+      - sub_4_era
+
+# Model configuration
+models:
+  # Classification models
+  classification:
+    division_winner:
+      models_to_train:
+        - logistic
+        - random_forest
+        - xgboost
+        - lightgbm
+      
+      hyperparameters:
+        logistic:
+          C: [0.001, 0.01, 0.1, 1.0, 10.0]
+          penalty: ['l1', 'l2']
+          solver: ['liblinear', 'saga']
+          
+        random_forest:
+          n_estimators: [100, 200, 300]
+          max_depth: [5, 10, 15, 20, null]
+          min_samples_split: [2, 5, 10]
+          min_samples_leaf: [1, 2, 4]
+          
+        xgboost:
+          n_estimators: [100, 200, 300]
+          max_depth: [3, 5, 7, 9]
+          learning_rate: [0.01, 0.05, 0.1, 0.2]
+          subsample: [0.7, 0.8, 0.9, 1.0]
+          colsample_bytree: [0.7, 0.8, 0.9, 1.0]
+          
+        lightgbm:
+          n_estimators: [100, 200, 300]
+          num_leaves: [31, 50, 100]
+          learning_rate: [0.01, 0.05, 0.1, 0.2]
+          feature_fraction: [0.7, 0.8, 0.9, 1.0]
+          bagging_fraction: [0.7, 0.8, 0.9, 1.0]
+  
+  # Regression models
+  regression:
+    win_prediction:
+      models_to_train:
+        - ridge
+        - lasso
+        - random_forest
+        - xgboost
+        - lightgbm
+      
+      hyperparameters:
+        ridge:
+          alpha: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0]
+          
+        lasso:
+          alpha: [0.001, 0.01, 0.1, 1.0, 10.0]
+          
+        random_forest:
+          n_estimators: [100, 200, 300]
+          max_depth: [10, 15, 20, 25, null]
+          min_samples_split: [2, 5, 10]
+          min_samples_leaf: [1, 2, 4]
+          
+        xgboost:
+          n_estimators: [100, 200, 300, 400]
+          max_depth: [3, 5, 7, 9]
+          learning_rate: [0.01, 0.05, 0.1]
+          subsample: [0.7, 0.8, 0.9, 1.0]
+          
+        lightgbm:
+          n_estimators: [100, 200, 300, 400]
+          num_leaves: [31, 50, 100, 150]
+          learning_rate: [0.01, 0.05, 0.1]
+          feature_fraction: [0.7, 0.8, 0.9, 1.0]
+  
+  # Ensemble configuration
+  ensemble:
+    methods: ['voting', 'stacking', 'blending']
+    voting_type: 'soft'  # 'hard' or 'soft'
+    meta_learner: 'logistic'  # for stacking
+    blend_features: 10  # top features for blending
+
+# Training configuration
+training:
+  # Data split
+  split:
+    test_size: 0.2
+    validation_size: 0.2
+    random_state: 42
+    stratify: true  # for classification
+    
+  # Cross validation
+  cross_validation:
+    n_folds: 5
+    strategy: 'stratified'  # 'stratified' or 'kfold'
+    
+  # Early stopping
+  early_stopping:
+    enabled: true
+    patience: 50
+    min_delta: 0.0001
+    
+  # Model selection
+  selection:
+    metric:
+      classification: 'roc_auc'  # 'accuracy', 'f1', 'precision', 'recall'
+      regression: 'rmse'  # 'mae', 'r2', 'mape'
+    
+  # Hyperparameter tuning
+  hyperparameter_tuning:
+    search_method: 'random'  # 'grid', 'random', 'bayesian'
+    n_iter: 50  # for random search
+    cv_folds: 3
+    scoring:
+      classification: 'roc_auc'
+      regression: 'neg_mean_squared_error'
+    n_jobs: -1
+
+# Prediction configuration
+prediction:
+  # Confidence intervals
+  confidence_intervals:
+    method: 'bootstrap'  # 'bootstrap' or 'quantile'
+    confidence_level: 0.95
+    n_bootstrap: 1000
+    
+  # Probability calibration
+  calibration:
+    enabled: true
+    method: 'isotonic'  # 'isotonic' or 'sigmoid'
+    cv_folds: 3
+    
+  # Prediction bounds
+  bounds:
+    min_wins: 40
+    max_wins: 120
+    
+  # Confidence thresholds
+  confidence_thresholds:
+    very_high: 0.9
+    high: 0.7
+    medium: 0.5
+    low: 0.0
+
+# Evaluation configuration
+evaluation:
+  # Metrics to calculate
+  metrics:
+    classification:
+      - accuracy
+      - precision
+      - recall
+      - f1
+      - roc_auc
+      - average_precision
+      - log_loss
+      
+    regression:
+      - rmse
+      - mae
+      - r2
+      - mape
+      - within_5_wins
+      - within_10_wins
+      
+  # Reporting
+  reporting:
+    generate_plots: true
+    save_predictions: true
+    create_dashboard: true
+    
+  # Performance thresholds
+  thresholds:
+    min_accuracy: 0.7
+    min_roc_auc: 0.8
+    max_rmse: 10.0
+    min_r2: 0.7
+
+# Application configuration
+app:
+  # Streamlit settings
+  streamlit:
+    title: "MLB Team Success Predictor"
+    page_icon: "⚾"
+    layout: "wide"
+    initial_sidebar_state: "expanded"
+    
+  # API settings
+  api:
+    host: "0.0.0.0"
+    port: 8000
+    reload: true
+    workers: 4
+    
+  # Dashboard settings
+  dashboard:
+    refresh_interval: 3600  # seconds
+    max_cache_entries: 1000
+    enable_download: true
+    
+# Paths configuration
+paths:
+  # Model paths
+  models:
+    saved_models: "models/saved_models/"
+    scalers: "models/scalers/"
+    
+  # Output paths
+  outputs:
+    predictions: "predictions/"
+    reports: "reports/"
+    plots: "plots/"
+    dashboards: "dashboards/"
+    
+  # Log paths
+  logs:
+    training: "logs/training/"
+    prediction: "logs/prediction/"
+    app: "logs/app/"
+
+# Resource configuration
+resources:
+  # Memory limits
+  memory:
+    max_data_size_gb: 4
+    model_cache_size_gb: 2
+    
+  # Processing
+  processing:
+    n_jobs: -1  # Use all available cores
+    chunk_size: 10000
+    
+  # Random seed
+  random_seed: 42
+
+# Monitoring configuration
+monitoring:
+  # Model monitoring
+  model_monitoring:
+    check_drift: true
+    drift_threshold: 0.1
+    retrain_threshold: 0.15
+    
+  # Performance monitoring
+  performance_monitoring:
+    track_predictions: true
+    log_errors: true
+    alert_on_failure: true
+    
+  # Data quality
+  data_quality:
+    check_missing: true
+    check_outliers: true
+    check_consistency: true
+
+# Feature importance configuration
+feature_importance:
+  # Methods to use
+  methods:
+    - permutation
+    - gain
+    - shap
+    
+  # Top features to track
+  top_n_features: 20
+  
+  # SHAP configuration
+  shap:
+    max_samples: 1000
+    check_additivity: false
