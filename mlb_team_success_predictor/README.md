@@ -1,4 +1,4 @@
-# MLB Team Success Predictor 🏆⚾
+# MLB Team Success Predictor 🏆⚾🧢
 
 A comprehensive machine learning system for predicting Major League Baseball team success, including division winners, win totals, and milestone achievements.
 
