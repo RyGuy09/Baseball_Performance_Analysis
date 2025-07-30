@@ -17,44 +17,69 @@ mlb-team-success-predictor/
 │   │   ├── data_loader.py
 │   │   ├── data_preprocessor.py
 │   │   └── feature_engineering.py
-│   │
-│   ├── models/
+│   │   │
+│   │   ├── models/
+│   │   │   ├── __init__.py
+│   │   │   ├── base_model.py
+│   │   │   ├── classification_models.py
+│   │   │   ├── regression_models.py
+│   │   │   ├── milestone_predictor.py
+│   │   │   ├── ensemble_models.py
+│   │   │   └── time_series_models.py
+│   │   │
+│   │   ├── training/
+│   │   │   ├── __init__.py
+│   │   │   ├── train_classifier.py
+│   │   │   ├── train_regressor.py
+│   │   │   ├── hyperparameter_tuning.py
+│   │   │   └── cross_validation.py
+│   │   │
+│   │   ├── evaluation/
+│   │   │   ├── __init__.py
+│   │   │   ├── metrics.py
+│   │   │   └── model_evaluation.py
+│   │   │
+│   │   ├── prediction/
+│   │   │   ├── __init__.py
+│   │   │   ├── predictor.py
+│   │   │   └── prediction_pipeline.py
+│   │   │
+│   │   ├── visualization/
+│   │   │   ├── __init__.py
+│   │   │   ├── exploratory_plots.py
+│   │   │   ├── model_plots.py
+│   │   │   └── interactive_plots.py
+│   │   │
+│   │   └── utils/
+│   │       ├── __init__.py
+│   │       ├── config.py
+│   │       ├── constants.py
+│   │       └── helpers.py
+|   |
+│   ├── evaluation/
 │   │   ├── __init__.py
-│   │   ├── base_model.py
-│   │   ├── classification_models.py
-│   │   ├── regression_models.py
-│   │   ├── milestone_predictor.py
-│   │   ├── ensemble_models.py
-│   │   └── time_series_models.py
-│   │
+│   │   ├── metrics.py
+│   │   └── model_evaluation.py
+│   |
+│   ├── logs/
+│   |
+│   ├── models/
+│   │   ├── artificats/
+│   │   ├── saved_models/
+│   │   ├── scalers/
+│   |
 │   ├── training/
 │   │   ├── __init__.py
 │   │   ├── train_classifier.py
 │   │   ├── train_regressor.py
 │   │   ├── hyperparameter_tuning.py
 │   │   └── cross_validation.py
-│   │
-│   ├── evaluation/
-│   │   ├── __init__.py
-│   │   ├── metrics.py
-│   │   └── model_evaluation.py
-│   │
-│   ├── prediction/
-│   │   ├── __init__.py
-│   │   ├── predictor.py
-│   │   └── prediction_pipeline.py
-│   │
+│
 │   ├── visualization/
 │   │   ├── __init__.py
 │   │   ├── exploratory_plots.py
 │   │   ├── model_plots.py
 │   │   └── interactive_plots.py
-│   │
-│   └── utils/
-│       ├── __init__.py
-│       ├── config.py
-│       ├── constants.py
-│       └── helpers.py
 │
 ├── notebooks/
 │   ├── 01_data_exploration.ipynb
