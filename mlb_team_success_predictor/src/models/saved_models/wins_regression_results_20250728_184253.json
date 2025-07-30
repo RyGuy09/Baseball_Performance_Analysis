@@ -1,0 +1,24 @@
+{
+  "linear_regression": {
+    "error": "Unknown model type: linear_regression. Choose from: ['linear', 'ridge', 'lasso', 'elastic_net', 'random_forest', 'gradient_boost', 'xgboost', 'lightgbm', 'svr', 'neural_network']"
+  },
+  "random_forest": {
+    "rmse": 2.680108038048242,
+    "mae": 2.074659408118981,
+    "r2": 0.9807473070929852,
+    "mean_error": 0.053056046400830205,
+    "std_error": 2.679582831627175,
+    "median_absolute_error": 1.7687573953824014,
+    "within_5_wins": 0.9615384615384616,
+    "within_10_wins": 0.9871794871794872,
+    "p90_error": 4.3493216089466165,
+    "p95_error": 4.745091865079344,
+    "train_time": 0.153318
+  },
+  "xgboost": {
+    "error": "XGBModel.fit() got an unexpected keyword argument 'early_stopping_rounds'"
+  },
+  "lightgbm": {
+    "error": "Wrong type(IntegerArray) for label.\nIt should be list, numpy 1-D array or pandas Series"
+  }
+}

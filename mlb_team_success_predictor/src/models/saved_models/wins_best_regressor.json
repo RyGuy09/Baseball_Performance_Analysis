@@ -1,0 +1,27 @@
+{
+  "model_name": "WinsRegressor_random_forest",
+  "model_class": "WinsRegressor",
+  "feature_names": [
+    "home_win_pct",
+    "away_win_pct",
+    "run_differential",
+    "runs_per_game",
+    "runs_allowed_per_game",
+    "pythagorean_wins",
+    "pythagorean_win_pct",
+    "prev_wins",
+    "prev_run_differential",
+    "wins_3yr_avg",
+    "wins_5yr_avg",
+    "run_differential_3yr_avg",
+    "wins_trend",
+    "run_differential_trend",
+    "performance_volatility",
+    "consistency_score",
+    "year",
+    "competitive_balance"
+  ],
+  "model_params": {},
+  "training_metadata": {},
+  "save_date": "2025-07-29T20:16:56.886194"
+}

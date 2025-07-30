@@ -1,0 +1,31 @@
+{
+  "model_name": "DivisionWinner_random_forest",
+  "model_class": "DivisionWinnerClassifier",
+  "feature_names": [
+    "wins",
+    "losses",
+    "winning_percentage",
+    "run_differential",
+    "home_win_pct",
+    "away_win_pct",
+    "home_away_diff",
+    "runs_per_game",
+    "runs_allowed_per_game",
+    "run_efficiency",
+    "pythagorean_wins",
+    "pythagorean_win_pct",
+    "luck_factor",
+    "prev_wins",
+    "prev_run_differential",
+    "prev_winning_percentage",
+    "wins_3yr_avg",
+    "run_differential_3yr_avg",
+    "wins_trend",
+    "momentum",
+    "relative_strength",
+    "wins_percentile"
+  ],
+  "model_params": {},
+  "training_metadata": {},
+  "save_date": "2025-07-29T20:16:54.924997"
+}
